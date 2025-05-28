@@ -1,68 +1,86 @@
 <html>
-<head>
-  <!-- Link the style sheet here -->
-</head>
-<div>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
-    <div class="container-fluid">
-      <h2 style="padding-right: 5%;">Dealerships</h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" style="font-size: larger;" href="/about">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-      <!-- Insert header information here -->
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
-        </div>
-      </div>
+    <head>
+        <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="/static/bootstrap.min.css">
+        <script>
+            const logout = async (e) => {
+                //Include the code for logout here.
+            };
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
-        </div>
-      </div>
+            let checkSession = ()=>{
+                let curr_user = sessionStorage.getItem("username");
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
-        <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
+                if (curr_user && curr_user !== "") {
+                    document.getElementById("loginlogout").innerHTML = 
+                    '<span class="homepage_links">' + curr_user +'</span>' +
+                    '<a class="homepage_links" onclick="logout()" href="/">Logout</a>'
+                } else {
+                    document.getElementById("loginlogout").innerHTML = 
+                    '<a class="homepage_links" href="/login">Login</a>'+
+                    '<a class="homepage_links"  href="/register">Register</a>'
+                }
+            }
+        </script>
+    </head>
+    <body onload="checkSession()">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+            <div class="container-fluid">
+                <h2 style="padding-right: 5%;">Dealerships</h2>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" style="font-size: larger;" href="/about">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
+            <div class="banner" name="about-header">
+                <h1>About Us</h1>
+                Hello, and Welcome to Best Cars Dealership; Home to the best cars in North America! We offer navigation of car dealerships for domestic and imported cars at reasonable and fair prices!
+            </div>
+            <div style="display: flex;flex-direction: row; margin:auto">
+                <div class="card" style="width: 30%;">
+                    <img class="card-img-top" src="/static/person1.jpg" alt="Card image">
+                    <div class="card-body">
+                        <p class="title">Andy Lokenhauer</p>
+                        <p>C.E.O</p>
+                        <p class="card-text">Andy had a vision for a convenient, easy-to-use website that could access all car dealership websites and provide users with the knowledge of dealerships' reliability and service. This company is a result of his efforts!</p>
+                        <p>aloken@bcdealers.com</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 30%;">
+                    <img class="card-img-top" src="/static/person2.jpg" alt="Card image">
+                    <div class="card-body">
+                        <p class="title">Jakob Hoovers</p>
+                        <p>Lead Developer</p>
+                        <p class="card-text">The expert behind the scenes, making this all happen and ensuring quality service comes quickly to our customers!</p>
+                        <p>jhoover@bcdealers.com</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 30%;">
+                    <img class="card-img-top" src="/static/person3.jpg" alt="Card image">
+                    <div class="card-body">
+                        <p class="title">Yannie Greyfeather</p>
+                        <p>Coordinator</p>
+                        <p class="card-text">The group's cheerleader and ringmaster, making sure we're always keeping ahead of the curve!</p>
+                        <p>ygrey@bcdealers.com</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    </div>
-    </div>
-    
-</div>
+    </body>
 
 </html>
