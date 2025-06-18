@@ -25,16 +25,12 @@ const Dealer = () => {
   let post_review = root_url+`postreview/${id}`;
   
   const get_dealer = async ()=>{
-    print(dealer_url);
     const res = await fetch(dealer_url, {
       method: "GET"
     });
-    print(res);
     const retobj = await res.json();
-    print(retobj);
     if(retobj.status === 200) {
       let dealerobjs = Array.from(retobj.dealer)
-      print(retobj.dealer)
       setDealer(dealerobjs[0])
     }
   }
@@ -44,7 +40,7 @@ const Dealer = () => {
       method: "GET"
     });
     const retobj = await res.json();
-    
+    console.log(retobj)
     if(retobj.status === 200) {
       if(retobj.reviews.length > 0){
         setReviews(retobj.reviews)
@@ -60,21 +56,7 @@ const Dealer = () => {
   }
 
   useEffect(() => {
-    const fetchDealer = async () => {
-        try {
-            const response = await fetch(`/djangoapp/dealer/${id}`)
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data)
-                setDealer(data);
-            } else {
-                console.error('Failed to fetch dealer data.');
-            }
-        } catch (error) {
-            console.error('Error fetching dealer data: ', error)
-        }
-    }
-    fetchDealer();
+    get_dealer();
     get_reviews();
     if(sessionStorage.getItem("username")) {
       setPostReview(<a href={post_review}><img src={review_icon} style={{width:'10%',marginLeft:'10px',marginTop:'10px'}} alt='Post Review'/></a>)

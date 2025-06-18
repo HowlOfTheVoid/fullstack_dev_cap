@@ -55,8 +55,9 @@ const PostReview = () => {
       },
       body: jsoninput,
   });
-
+  
   const json = await res.json();
+  console.log(json)
   if (json.status === 200) {
       window.location.href = window.location.origin+"/dealer/"+id;
   }
@@ -80,7 +81,6 @@ const PostReview = () => {
       method: "GET"
     });
     const retobj = await res.json();
-    
     let carmodelsarr = Array.from(retobj.CarModels)
     setCarmodels(carmodelsarr)
   }
