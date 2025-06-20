@@ -38,7 +38,7 @@ def logout_request(request):
 
     logout(request)
 
-    data = {"userName":""}
+    data = {"userName": ""}
 
     return JsonResponse(data)
 
@@ -57,7 +57,7 @@ def registration(request):
 
     try:
         # Check if user already exists
-        User.objects.get(username = username)
+        User.objects.get(username=username)
         username_exist = True
     except Exception:
         # If exception, user must be new
@@ -65,11 +65,11 @@ def registration(request):
 
     # If a new user
     if username_exist is False:
-        user = User.objects.create_user(username = username, 
-                                        first_name = first_name, 
-                                        last_name = last_name, 
-                                        password = password, 
-                                        email = email)
+        user = User.objects.create_user(username=username,
+                                        first_name=first_name,
+                                        last_name=last_name,
+                                        password=password,
+                                        email=email)
 
         login(request, user)
         data = {"username": username, "status": "Authenticated"}
@@ -82,12 +82,12 @@ def registration(request):
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
-    if(count == 0):
+    if (count == 0):
         initiate()
     car_models = CarModel.objects.filter()
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, 
+        cars.append({"CarModel": car_model.name,
                      "CarMake": car_model.car_make.name})
     return JsonResponse({"CarModels": cars})
 
@@ -112,7 +112,7 @@ def get_dealer_reviews(request, dealer_id):
             response = analyze_review_sentiments(review_detail['review'])
             print(response)
             review_detail['sentiment'] = response['sentiment']
-        return JsonResponse({"status": 200, "reviews":reviews})
+        return JsonResponse({"status": 200, "reviews": reviews})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
@@ -136,6 +136,11 @@ def add_review(request):
             response = post_review(data)
             return JsonResponse({"status": 200})
         except Exception:
-            return JsonResponse({"status": 401, "message": "error in posting review"})
+            return JsonResponse(
+                {
+                    "status": 401,
+                    "message": "error in posting review"
+                    }
+                )
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized user."})
